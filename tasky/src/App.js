@@ -8,16 +8,21 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 function App() {
-  // eslint-disable-next-line
   const [ taskState, setTaskState ] = useState({
     tasks: [
-      { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", done: false },
-      { id: 4, title: "Shopping", deadline: "Tomorrow"},
-      { id: 5, title: "Wash Clothes", description: "Wash all clothes", deadline: "Today"}
+      { id: 1, title:"Dishes", description: "Empty dishwasher", priority: "High", deadline: "Today", done: false },
+      { id: 2, title: "Laundry", description: "Fold clothes and put away", priority: "Medium", deadline: "Tomorrow", done: false },
+      { id: 3, title: "Tidy up", deadline: "Today", priority: "Low", done: false },
+      
     ]
   });
+
+  const [ formState, setFormState ] = useState({
+    title: "",
+    description: "",
+    priority: "",
+    deadline: ""
+  })
 
   const doneHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
@@ -42,6 +47,9 @@ function App() {
       case "description":
           form.description = event.target.value;
           break;
+      case "priority":
+          form.priority = event.target.value;
+          break;
       case "deadline":
           form.deadline = event.target.value;
           break;
@@ -49,9 +57,9 @@ function App() {
           form = formState;
     }
     setFormState(form);
-    console.log(formState);
   
   }
+  console.log(formState);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -64,12 +72,6 @@ function App() {
     tasks.push(form);
     setTaskState({tasks});
   }
-
-  const [ formState, setFormState ] = useState({
-    title: "",
-    description: "",
-    deadline: ""
-  });
 
   return (
     <div className="container">
@@ -103,6 +105,7 @@ function App() {
                 deadline={task.deadline}
                 done={task.done}
                 key={task.id}
+                priority={task.priority}
                 markDone = {() => doneHandler(index)}
                 deleteTask = {() => deleteHandler(index)}
               />
