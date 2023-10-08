@@ -49,7 +49,7 @@ const AddTaskForm = (props) => {
           select
           required
           label="Priority"
-          //name="Priority"
+          name="priority"
           InputLabelProps={{ shrink: true }}
           onChange={(event) => props.change(event)}
         >

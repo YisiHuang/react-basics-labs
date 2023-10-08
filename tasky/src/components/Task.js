@@ -18,7 +18,7 @@ const Task = (props) => {
       key={props.id}
       xs={12}
       md={4}
-  >
+        >
       <Card sx={{
           backgroundColor: props.done ? 'lightgrey' : 'lightblue',
           padding: '20px'
@@ -55,9 +55,10 @@ const Task = (props) => {
                 padding: '10px'
                 }}
                 >
-                <Chip lable={props.priority} 
+                <Chip label={props.priority} 
                     color={props.priority==="High" ? "error" : props.priority==="Medium" ? "warning" : "success"} 
                     size="small" />
+                    
               </Box>
               
               <Typography
